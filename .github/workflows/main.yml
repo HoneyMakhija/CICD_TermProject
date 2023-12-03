@@ -55,6 +55,8 @@ jobs:
 
       - name: Archive test results
         uses: honeymakhija/cicd_termproject@main
+        with:
+          branch: "main"
 
 
          
