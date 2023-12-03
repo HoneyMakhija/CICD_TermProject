@@ -1,20 +1,14 @@
 
-name: 'Archive Test Results'
-on:
-  push:
-    branches:
-      - 'main'
-  pull_request:
-    branches:
-      - 'main'
-jobs:
-  archive:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Archive test results
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-results
-          path: test_file.txt
+nname: 'Checkout Branch'
+description: 'Checks out a specific branch of the repository'
+inputs:
+  branch:
+    description: 'The branch to checkout'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout branch
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ inputs.branch }}
