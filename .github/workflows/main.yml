@@ -39,15 +39,25 @@ jobs:
           tags: honeycanada21/cicdtermproject:${{ github.sha }}
           file: ./Dockerfile
           context: ./
-       
-      - name: Test
-        run: npm test > results.txt
 
-      - name: Upload Test Results
+
+      - name: Run tests
+        run: |
+          npm test
+
+      - name: Write test results to file
+        run: |
+         if [ $? -eq 0 ]; then
+          echo "All tests passed" > test_file.txt
+          else
+          echo "Tests failed" > test_file.txt
+           fi
+      - name: Archive test file
         uses: actions/upload-artifact@v2
         with:
-          name: test-results
-          path: results.txt
+         name: test-file
+         path: test_file.txt
+       
 
       # - name: Azure Login
       #   uses: azure/login@v1
