@@ -1,5 +1,5 @@
 
-nname: 'Checkout Branch'
+name: 'Checkout Branch'
 description: 'Checks out a specific branch of the repository'
 inputs:
   branch:
