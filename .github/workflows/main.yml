@@ -40,8 +40,10 @@ jobs:
           file: ./Dockerfile
           context: ./
        
-      # - name: Test
-      #   run: npm test > results.txt
+      - name: Test
+        run: npm test 
+        
+        # > results.txt
 
       # - name: Upload Test Results
       #   uses: actions/upload-artifact@v2
