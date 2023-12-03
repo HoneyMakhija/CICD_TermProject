@@ -52,11 +52,12 @@ jobs:
           else
           echo "Tests failed" > test_file.txt
            fi
-      - name: Archive test file
-        uses: actions/upload-artifact@v2
-        with:
-         name: test-file
-         path: test_file.txt
+
+      - name: Archive test results
+        uses: honeymakhija/cicd_termproject@main
+
+
+         
        
 
       # - name: Azure Login
