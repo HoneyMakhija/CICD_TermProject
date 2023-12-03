@@ -1,0 +1,20 @@
+
+name: 'Archive Test Results'
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - 'main'
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Archive test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: ${{ github.workspace }}/test_file.txt
