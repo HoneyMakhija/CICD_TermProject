@@ -1,0 +1,26 @@
+name: Run Ansible Playbook
+
+on:
+  workflow_run:
+    workflows: ["main-test"]
+    types: 
+      - completed
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install Ansible
+      run: pip install ansible
+
+    - name: Run Ansible Playbook
+      run: ansible-playbook playbook.yml
