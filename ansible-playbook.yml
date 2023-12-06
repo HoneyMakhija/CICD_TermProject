@@ -34,24 +34,24 @@
         name: ansible
         state: present
 
-    - name: Login to Docker Hub
-      docker_login:
-        username: honeycanada21
-        password: Psswd@docker1
+    # - name: Login to Docker Hub
+    #   docker_login:
+    #     username: honeycanada21
+    #     password: Psswd@docker1
         
-    - name: Build Docker image
-      docker_image:
-        name: honeycanad21/image1:latest
-        source: build
-        build:
-          path: ./
-          dockerfile: ./Dockerfile
+    # - name: Build Docker image
+    #   docker_image:
+    #     name: honeycanad21/image1:latest
+    #     source: build
+    #     build:
+    #       path: ./
+    #       dockerfile: ./Dockerfile
 
-    - name: Push Docker image to Docker Hub
-      docker_image:
-        name: honeycanad21/image1:latest
-        source: local
-        push: yes
+    # - name: Push Docker image to Docker Hub
+    #   docker_image:
+    #     name: honeycanad21/image1:latest
+    #     source: local
+    #     push: yes
 
     - name: Pull Node.js app from Docker Hub
       docker_image:
