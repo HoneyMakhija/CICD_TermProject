@@ -11,10 +11,8 @@
         name: python3
         state: present
 
-    - name: Install Docker
-      apt:
-        name: docker.io
-        state: present
+    - name: Install Docker using official script
+      shell: curl -fsSL https://get.docker.com | sh
 
     - name: Install Ansible
       apt:
@@ -23,13 +21,12 @@
 
     - name: Pull Node.js app from Docker Hub
       docker_image:
-        name: honeycanada21/cicdtermproject
+        name: honeycanad21/cicdtermproject:latest
         source: pull
 
     - name: Run Node.js app
       docker_container:
         name: nodejs_app
-        image: honeycanada21/cicdtermproject
+        image: honeycanad21/cicdtermproject:latest
         state: started
         published_ports: 3000:3000
-
