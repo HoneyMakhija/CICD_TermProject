@@ -22,7 +22,7 @@ app.use(
   swaggerUi.setup(swaggerSpecs, { explorer: true })
 );
 
-app.listen(port, () => {
+app.listen(port,'0.0.0.0', () => {
   console.log("Server Started On.. http://localhost:" + port);
 });
 
