@@ -61,6 +61,6 @@
     - name: Run Node.js app
       docker_container:
         name: nodejs_app
-        image: honeycanad21/cicdtermproject:latest
+        docker pull honeycanada21/cicdtermproject:f2e25cf8028a14e20af4af18c43f583f8d338358
         state: started
         published_ports: 3000:3000
