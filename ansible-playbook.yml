@@ -2,20 +2,7 @@
 - hosts: localhost
   become: yes
   tasks:
-    - name: Install Python
-      apt:
-        name: python
-        state: present
-
-    - name: Install Docker
-      apt:
-        name: docker.io
-        state: present
-
-    - name: Install Ansible
-      apt:
-        name: ansible
-        state: present
+   
 
     - name: Pull Node.js app from Docker Hub
       docker_image:
