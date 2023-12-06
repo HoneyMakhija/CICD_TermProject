@@ -41,7 +41,7 @@
 
     - name: Build Docker image
       docker_image:
-        path: Dockerfile
+        path: ./
         name: honeycanad21/cicdtermproject
         source: build
 
