@@ -1,31 +1,38 @@
-- hosts: localhost
-  vars:
-    ansible_python_interpreter: /path/to/python3.12
-  become: yes
-  
-  tasks:
-    - name: Docker APT
-      apt:
-        name: 
-          - docker.io
-          - python3-pip
-        state: present
 
-    - name: Start Docker service
+- name: Install Python, Ansible, and Docker, then Deploy Node.js App from Docker
+  hosts: localhost
+  gather_facts: false  # We don't gather facts for localhost
+
+  tasks:
+    - name: Install Python (if not present)
+      become: true
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+
+    - name: Install Ansible (if not present)
+      become: true
+      raw: test -e /usr/bin/ansible || (apt -y update && apt install -y ansible)
+
+    - name: Install Docker (if not present)
+      become: true
+      raw: test -e /usr/bin/docker || (apt -y update && apt install -y docker.io)
+
+    - name: Start Docker Service
+      become: true
       service:
         name: docker
         state: started
         enabled: yes
 
     - name: Pull Node.js Docker image
-      community.docker.docker_image:
-        name: "honeycanad21/cicdtermproject:latest"
-        source: pull
-        
-    - name: Create Node.js Docker container
-      community.docker.docker_container:
-        name: cicdtermproject
-        image: "honeycanad21/cicdtermproject:latest"
-        state: started
+      become: true
+      docker_image:
+        name: node:latest
+
+    - name: Run Node.js Docker container
+      become: true
+      docker_container:
+        name: nodejs_app_container
+        image: node:latest
         ports:
           - "3000:3000"
+        detach: yes
