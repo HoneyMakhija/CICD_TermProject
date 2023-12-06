@@ -26,7 +26,5 @@ jobs:
           python -m pip install --upgrade pip
           pip install ansible
 
-      - name: Execute Ansible Playbook
-        uses: ansible/ansible-playbook-action@v2
-        with:
-          playbook: ansible-playbook.yml
+      - name: Run Ansible Playbook
+        run: ansible-playbook ansible-playbook.yml
