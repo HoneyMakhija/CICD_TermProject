@@ -15,7 +15,7 @@
       become: true
       lineinfile:
         path: /etc/environment
-        line: LD_LIBRARY_PATH="/home/c0870558/actions-runner/_work/_tool/Python/3.12.0/x64/lib"
+        line: LD_LIBRARY_PATH="/home/c0870558/actions-runner/_work/_tool/Python/3.12.0/x64/lib/libpython3.12.so.1.0"
       # Add a task to reload the environment variables or restart the shell if necessary
 
     - name: Install Docker (if not present)
