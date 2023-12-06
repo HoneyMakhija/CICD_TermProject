@@ -36,9 +36,9 @@
 
     - name: Login to Docker Hub
       docker_login:
-        username: honeycanada21
-        password: Psswd@docker1
-
+        username: "{{ docker_username }}"
+        password: "{{ docker_password }}"
+        
     - name: Build Docker image
       docker_image:
         name: honeycanad21/cicdtermproject:latest
