@@ -1,9 +1,10 @@
 - hosts: localhost
+  become: yes
   tasks:
     - name: Docker APT
       apt:
         name: 
-          - docker
+          - docker.io
           - python3-pip
         state: present
 
