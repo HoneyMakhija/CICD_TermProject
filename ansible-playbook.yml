@@ -1,7 +1,5 @@
 
 - hosts: localhost
-  vars_files:
-    - ./secrets.yml
   become: yes
   tasks:
     - name: Update package list
@@ -38,8 +36,8 @@
 
     - name: Login to Docker Hub
       docker_login:
-        username: "{{ docker_username }}"
-        password: "{{ docker_password }}"
+        username: honeycanada21
+        password: Psswd@docker1
         
     - name: Build Docker image
       docker_image:
