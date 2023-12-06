@@ -20,7 +20,7 @@
         
     - name: Create Node.js Docker container
       community.docker.docker_container:
-        name: your-node-app
+        name: cicdtermproject
         image: "honeycanad21/cicdtermproject:latest"
         state: started
         ports:
