@@ -2,15 +2,9 @@
 - hosts: localhost
   become: yes
   tasks:
-
-  - name: Set LD_LIBRARY_PATH
-    become: true
-    environment:
-      LD_LIBRARY_PATH: "/home/c0870558/actions-runner/_work/_tool/Python/3.12.0/x64/lib/libpython3.12.so.1.0:{{ LD_LIBRARY_PATH }}"
-        
     - name: Install Python
       apt:
-        name: python
+        name: python3
         state: present
 
     - name: Install Docker
@@ -25,12 +19,12 @@
 
     - name: Pull Node.js app from Docker Hub
       docker_image:
-        name: your_username/your_nodejs_app
+        name: honeycanada21/cicdtermproject
         source: pull
 
     - name: Run Node.js app
       docker_container:
         name: nodejs_app
-        image: your_username/your_nodejs_app
+        image: honeycanada21/cicdtermproject
         state: started
         published_ports: 3000:3000
