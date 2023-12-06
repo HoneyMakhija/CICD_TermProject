@@ -34,33 +34,33 @@
         name: ansible
         state: present
 
-    # - name: Login to Docker Hub
-    #   docker_login:
-    #     username: honeycanada21
-    #     password: Psswd@docker1
+    - name: Login to Docker Hub
+      docker_login:
+        username: honeycanada21
+        password: Psswd@docker1
         
-    # - name: Build Docker image
-    #   docker_image:
-    #     name: honeycanad21/image1:latest
-    #     source: build
-    #     build:
-    #       path: ./
-    #       dockerfile: ./Dockerfile
+    - name: Build Docker image
+      docker_image:
+        name: honeycanada21/cicdtermproject:latest
+        source: build
+        build:
+          path: ./
+          dockerfile: ./Dockerfile
 
-    # - name: Push Docker image to Docker Hub
-    #   docker_image:
-    #     name: honeycanad21/image1:latest
-    #     source: local
-    #     push: yes
+    - name: Push Docker image to Docker Hub
+      docker_image:
+        name: honeycanada21/cicdtermproject:latest
+        source: local
+        push: yes
 
     - name: Pull Node.js app from Docker Hub
       docker_image:
-        name: honeycanada21/cicdtermproject:f2e25cf8028a14e20af4af18c43f583f8d338358
+        name: honeycanada21/cicdtermproject:latest
         source: pull
 
     - name: Run Node.js app
       docker_container:
         name: nodejs_app
-        image: honeycanada21/cicdtermproject:f2e25cf8028a14e20af4af18c43f583f8d338358
+        image: honeycanada21/cicdtermproject:latest
         state: started
         published_ports: 3000:3000
