@@ -2,9 +2,13 @@
 - hosts: localhost
   become: yes
   tasks:
+    - name: Update package list
+      apt:
+        update_cache: yes
+
     - name: Install Python
       apt:
-        name: python3
+        name: python
         state: present
 
     - name: Install Docker
@@ -28,3 +32,4 @@
         image: honeycanada21/cicdtermproject
         state: started
         published_ports: 3000:3000
+
