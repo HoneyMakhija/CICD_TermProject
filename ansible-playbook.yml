@@ -1,6 +1,6 @@
 - hosts: localhost
   tasks:
-    - name: Docker YUM
+    - name: Docker APT
       yum:
         name: 
           - docker
