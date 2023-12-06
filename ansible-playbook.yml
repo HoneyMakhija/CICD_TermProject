@@ -41,12 +41,12 @@
 
     - name: Pull Node.js app from Docker Hub
       docker_image:
-        name: honeycanad21/cicdtermproject:latest
+        name: honeycanad21/cicdtermproject
         source: pull
 
     - name: Run Node.js app
       docker_container:
         name: nodejs_app
-        image: honeycanad21/cicdtermproject:latest
+        image: honeycanad21/cicdtermproject
         state: started
         published_ports: 3000:3000
