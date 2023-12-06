@@ -2,7 +2,6 @@
 - hosts: localhost
   become: yes
   tasks:
-   
 
     - name: Pull Node.js app from Docker Hub
       docker_image:
