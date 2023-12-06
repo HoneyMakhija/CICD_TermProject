@@ -13,7 +13,10 @@
       raw: test -e /usr/bin/ansible || (apt -y update && apt install -y ansible)
 
     - name: Set LD_LIBRARY_PATH
-        environment: export LD_LIBRARY_PATH= "/home/c0870558/actions-runner/_work/_tool/Python/3.12.0/x64/lib/libpython3.12.so.1.0"
+      become: true
+      environment:
+        LD_LIBRARY_PATH: "/home/c0870558/actions-runner/_work/_tool/Python/3.12.0/x64/lib"
+  # Add other tasks or continue with your playbook...
 
     - name: Install Docker (if not present)
       become: true
