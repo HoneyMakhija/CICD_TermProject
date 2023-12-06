@@ -1,44 +1,30 @@
-- name: Install Python, Ansible, and Docker, then Deploy Node.js App from Docker
-  hosts: localhost
-  gather_facts: false
-
+---
+- hosts: localhost
+  become: yes
   tasks:
-    - name: Install Python (if not present)
-      become: true
-      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-is-python3)
+    - name: Install Python
+      apt:
+        name: python
+        state: present
 
-    - name: Install Ansible (if not present)
-      become: true
-      raw: test -e /usr/bin/ansible || (apt -y update && apt install -y ansible)
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
 
-    - name: Set LD_LIBRARY_PATH
-      become: true
-      lineinfile:
-        path: /etc/environment
-        line: LD_LIBRARY_PATH="/home/c0870558/actions-runner/_work/_tool/Python/3.12.0/x64/lib/libpython3.12.so.1.0"
-      # Add a task to reload the environment variables or restart the shell if necessary
+    - name: Install Ansible
+      apt:
+        name: ansible
+        state: present
 
-    - name: Install Docker (if not present)
-      become: true
-      raw: test -e /usr/bin/docker || (apt -y update && apt install -y docker.io)
-
-    - name: Start Docker Service
-      become: true
-      service:
-        name: docker
-        state: started
-        enabled: yes
-
-    - name: Pull Node.js Docker image
-      become: true
+    - name: Pull Node.js app from Docker Hub
       docker_image:
-        name: node:latest
+        name: "honeycanad21/cicdtermproject:latest"
+        source: pull
 
-    - name: Run Node.js Docker container
-      become: true
+    - name: Run Node.js app
       docker_container:
-        name: nodejs_app_container
-        image: node:latest
-        ports:
-          - "3000:3000"
-        detach: yes
+        name: nodejs_app
+        image: "honeycanad21/cicdtermproject:latest"
+        state: started
+        published_ports: 3000:3000
