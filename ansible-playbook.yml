@@ -1,7 +1,6 @@
-
 - name: Install Python, Ansible, and Docker, then Deploy Node.js App from Docker
   hosts: localhost
-  gather_facts: false  # We don't gather facts for localhost
+  gather_facts: false
 
   tasks:
     - name: Install Python (if not present)
@@ -14,9 +13,10 @@
 
     - name: Set LD_LIBRARY_PATH
       become: true
-      environment:
-        LD_LIBRARY_PATH: "/home/c0870558/actions-runner/_work/_tool/Python/3.12.0/x64/lib"
-  # Add other tasks or continue with your playbook...
+      lineinfile:
+        path: /etc/environment
+        line: LD_LIBRARY_PATH="/home/c0870558/actions-runner/_work/_tool/Python/3.12.0/x64/lib"
+      # Add a task to reload the environment variables or restart the shell if necessary
 
     - name: Install Docker (if not present)
       become: true
