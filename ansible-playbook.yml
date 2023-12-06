@@ -41,9 +41,10 @@
 
     - name: Build Docker image
       docker_image:
-        path: ./
         name: honeycanad21/cicdtermproject
         source: build
+        build:
+          path: ./
 
     - name: Push Docker image to Docker Hub
       docker_image:
