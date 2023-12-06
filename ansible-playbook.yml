@@ -1,7 +1,7 @@
 - hosts: localhost
   tasks:
     - name: Docker APT
-      yum:
+      apt:
         name: 
           - docker
           - python3-pip
