@@ -6,7 +6,7 @@
   tasks:
     - name: Install Python (if not present)
       become: true
-      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-is-python3)
 
     - name: Install Ansible (if not present)
       become: true
