@@ -2,15 +2,29 @@
 - hosts: localhost
   become: yes
   tasks:
+    - name: Install Python
+      apt:
+        name: python
+        state: present
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Install Ansible
+      apt:
+        name: ansible
+        state: present
 
     - name: Pull Node.js app from Docker Hub
       docker_image:
-        name: "honeycanad21/cicdtermproject:latest"
+        name: your_username/your_nodejs_app
         source: pull
 
     - name: Run Node.js app
       docker_container:
         name: nodejs_app
-        image: "honeycanad21/cicdtermproject:latest"
+        image: your_username/your_nodejs_app
         state: started
         published_ports: 3000:3000
