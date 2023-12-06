@@ -36,8 +36,19 @@
 
     - name: Login to Docker Hub
       docker_login:
-        username: honeycanada21      
+        username: honeycanada21
         password: Psswd@docker1
+
+    - name: Build Docker image
+      docker_image:
+        path: Dockerfile
+        name: honeycanad21/cicdtermproject
+        source: build
+
+    - name: Push Docker image to Docker Hub
+      docker_image:
+        name: honeycanad21/cicdtermproject
+        source: push
 
     - name: Pull Node.js app from Docker Hub
       docker_image:
