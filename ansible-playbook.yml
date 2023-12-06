@@ -49,7 +49,7 @@
     - name: Push Docker image to Docker Hub
       docker_image:
         name: honeycanad21/cicdtermproject
-        source: push
+        push: yes
 
     - name: Pull Node.js app from Docker Hub
       docker_image:
