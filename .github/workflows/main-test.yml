@@ -1,5 +1,4 @@
-name: deploy application to testing env
-
+name: Testing the Application
 # When this action will be executed
 on:
   # Automatically trigger it when detected changes in repo
@@ -60,9 +59,6 @@ jobs:
          name: test-file
          path: test_file.txt
 
-
-         
-       
 
       # - name: Azure Login
       #   uses: azure/login@v1
