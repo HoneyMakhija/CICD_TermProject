@@ -2,37 +2,25 @@
 - hosts: localhost
   become: yes
   tasks:
-    - name: Update package list
-      apt:
-        update_cache: yes
-
     - name: Install Python
       apt:
-        name: python3
+        name: python
         state: present
 
-    - name: Install pip
+    - name: Install Docker
       apt:
-        name: python3-pip
+        name: docker.io
         state: present
-
-    - name: Install Python requests library
-      pip:
-        name: requests
-        state: present
-
-    - name: Install Docker using official script
-      shell: curl -fsSL https://get.docker.com | sh
-
-    - name: Start Docker service
-      systemd:
-        name: docker
-        state: started
 
     - name: Install Ansible
       apt:
         name: ansible
         state: present
+
+    - name: Login to Docker Hub
+      docker_login:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Pull Node.js app from Docker Hub
       docker_image:
@@ -45,3 +33,4 @@
         image: honeycanad21/cicdtermproject
         state: started
         published_ports: 3000:3000
+
