@@ -159,5 +159,4 @@ exports.deleteUserById = (req, res) => {
             .send({ message: "Error deleting User with name: " + name });
         });
     };
-};
 
