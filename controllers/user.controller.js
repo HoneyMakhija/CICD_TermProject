@@ -143,3 +143,21 @@ exports.deleteUserById = (req, res) => {
         .send({ message: "Error retrieving User with id: " + id });
     });
 };
+
+    exports.deleteUserByName = (req, res) => {
+      const name = req.params.name;
+    
+      User.deleteOne({ name: name })
+        .then(data => {
+          if (data.deletedCount === 0)
+            res.status(404).send({ message: "User not found with name: " + name });
+          else res.send("User deleted with name: " + name);
+        })
+        .catch(err => {
+          res
+            .status(500)
+            .send({ message: "Error deleting User with name: " + name });
+        });
+    };
+};
+
