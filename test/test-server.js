@@ -7,7 +7,6 @@ var User = require("../models/user");
 chai.use(chaiHttp);
 var mockUser;
 
-
 describe('User crud unit tests', () => {
 
     User.collection.drop();
@@ -21,7 +20,6 @@ describe('User crud unit tests', () => {
         mockUser.save(function (err) {
             done();
         });
-        // sleep.sleep(5)
     });
 
     afterEach((done) => {
